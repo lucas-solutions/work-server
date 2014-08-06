@@ -32,7 +32,7 @@ namespace Lucas.Solutions.IO
             protected set;
         }
 
-        ITask IWorker.Task
+        Task IWork.Task
         {
             get { return _transfer; }
             set { _transfer = value as Transfer; }
@@ -90,7 +90,7 @@ namespace Lucas.Solutions.IO
             return null;
         }
 
-        public void Start()
+        public void Work()
         {
             var remoteOutgoing = Transfer.Parties
                 .Where(party => party.Direction == TransferDirection.Out && party.Host.Protocol == HostProtocol.FileTransfer)
@@ -111,10 +111,6 @@ namespace Lucas.Solutions.IO
             }
 
             //var outgoingFiles = outgoingDir.AsParallel().SelectMany(dir => dir.GetFiles());
-        }
-
-        public void Stop()
-        {
         }
     }
 }

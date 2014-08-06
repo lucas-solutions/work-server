@@ -8,18 +8,18 @@ namespace Lucas.Solutions.Automation
 {
     public class Scheduler
     {
-        private ICollection<ITask> _tasks;
-        private ICollection<IWorker> _workers;
+        private ICollection<Task> _tasks;
+        private ICollection<IWork> _workers;
 
-        public ICollection<ITask> Tasks
+        public ICollection<Task> Tasks
         {
-            get { return _tasks ?? (_tasks = new List<ITask>()); }
+            get { return _tasks ?? (_tasks = new List<Task>()); }
             set { _tasks = value; }
         }
 
-        public ICollection<IWorker> Workers
+        public ICollection<IWork> Workers
         {
-            get { return _workers ?? (_workers = new List<IWorker>()); }
+            get { return _workers ?? (_workers = new List<IWork>()); }
             set { _workers = value; }
         }
 

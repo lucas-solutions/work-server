@@ -39,14 +39,14 @@ namespace Lucas.Solutions.Stores
             return new Task(() => _collection.Remove(entity));
         }
 
-        public Task<Automation.ITask> FindByIdAsync(int taskId)
+        public Task<Automation.Task> FindByIdAsync(int taskId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Automation.ITask> FindByNameAsync(string taskName)
+        public Task<Automation.Task> FindByNameAsync(string taskName)
         {
-            return new Task<Automation.ITask>(() => _collection.FirstOrDefault(item => item.Name == taskName));
+            return new Task<Automation.Task>(() => _collection.FirstOrDefault(item => item.Name == taskName));
         }
 
         public Task UpdateAsync(Automation.Task entity)

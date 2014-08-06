@@ -12,13 +12,13 @@ namespace Lucas.Solutions.Automation
         /// </summary>
         /// <param name="hostId"></param>
         /// <returns></returns>
-        Task<ITask> FindByIdAsync(int taskId);
+        Task<Task> FindByIdAsync(int taskId);
 
         /// <summary>
         /// Find a task by name
         /// </summary>
         /// <param name="taskName"></param>
         /// <returns></returns>
-        Task<ITask> FindByNameAsync(string taskName);
+        Task<Task> FindByNameAsync(string taskName);
     }
 }

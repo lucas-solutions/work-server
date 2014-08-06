@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lucas.Solutions.Automation
 {
-    public abstract class Task : ITask
+    public abstract class Task
     {
         private TaskStart _start;
         private readonly string _type;
@@ -37,11 +37,11 @@ namespace Lucas.Solutions.Automation
             set { _start = (TaskStart)value; }
         }
 
-        TaskStart ITask.Start
+        /*TaskStart ITask.Start
         {
             get { return _start; }
             set { _start = value; }
-        }
+        }*/
 
         public TaskState State
         {

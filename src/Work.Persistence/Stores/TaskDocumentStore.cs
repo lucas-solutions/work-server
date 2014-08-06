@@ -13,12 +13,12 @@ namespace Lucas.Solutions.Stores
             get { return Entities; }
         }
 
-        public Task<ITask> FindByIdAsync(int taskId)
+        public Task<Automation.Task> FindByIdAsync(int taskId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ITask> FindByNameAsync(string taskName)
+        public Task<Automation.Task> FindByNameAsync(string taskName)
         {
             throw new NotImplementedException();
         }

@@ -77,11 +77,10 @@
     <Compile Include="IO\TransferDirection.cs" />
     <Compile Include="IO\TransferTrace.cs" />
     <Compile Include="IProgress.cs" />
-    <Compile Include="Automation\ITask.cs" />
     <Compile Include="Automation\ITaskStore.cs" />
     <Compile Include="IO\Host.cs" />
     <Compile Include="IO\Transfer.cs" />
-    <Compile Include="Automation\IWorker.cs" />
+    <Compile Include="Automation\IWork.cs" />
     <Compile Include="IQueriableEntityStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Automation\TaskState.cs" />
