@@ -38,7 +38,7 @@ namespace Lucas.Solutions.IO
             set { _transfer = value as Transfer; }
         }
 
-        Transfer IWorker<Transfer>.Task
+        Transfer IWork<Transfer>.Task
         {
             get { return _transfer; }
             set { _transfer = value as Transfer; }
@@ -90,27 +90,30 @@ namespace Lucas.Solutions.IO
             return null;
         }
 
-        public void Work()
+        public System.Threading.Tasks.Task WorkAsync()
         {
-            var remoteOutgoing = Transfer.Parties
-                .Where(party => party.Direction == TransferDirection.Out && party.Host.Protocol == HostProtocol.FileTransfer)
-                .Select(party => new RemoteDirectory(party))
-                .ToArray();
+            return new System.Threading.Tasks.Task(() =>
+                {
+                    var remoteOutgoing = Transfer.Parties
+                        .Where(party => party.Direction == TransferDirection.Out && party.Host.Protocol == HostProtocol.FileTransfer)
+                        .Select(party => new RemoteDirectory(party))
+                        .ToArray();
 
-            var localOutgoing = Transfer.Parties
-                .Where(party => party.Direction == TransferDirection.Out && party.Host.Protocol == HostProtocol.FileSystem)
-                .Select(party => new LocalDirectory(party))
-                .ToArray();
+                    var localOutgoing = Transfer.Parties
+                        .Where(party => party.Direction == TransferDirection.Out && party.Host.Protocol == HostProtocol.FileSystem)
+                        .Select(party => new LocalDirectory(party))
+                        .ToArray();
 
-            var remoteFiles = remoteOutgoing.AsParallel().SelectMany(dir => dir.GetFiles());
+                    var remoteFiles = remoteOutgoing.AsParallel().SelectMany(dir => dir.GetFiles());
 
-            foreach (var file in remoteFiles)
-            {
-                var path = Path.Combine(Temporal.FullName, file.Id.ToString());
-                file.PullAsync(File.Open(path, FileMode.Create, FileAccess.Write, FileShare.None), (progress) => { });
-            }
+                    foreach (var file in remoteFiles)
+                    {
+                        var path = Path.Combine(Temporal.FullName, file.Id.ToString());
+                        file.PullAsync(File.Open(path, FileMode.Create, FileAccess.Write, FileShare.None), (progress) => { });
+                    }
 
-            //var outgoingFiles = outgoingDir.AsParallel().SelectMany(dir => dir.GetFiles());
+                    //var outgoingFiles = outgoingDir.AsParallel().SelectMany(dir => dir.GetFiles());
+                });
         }
     }
 }

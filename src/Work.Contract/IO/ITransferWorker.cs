@@ -8,7 +8,7 @@ namespace Lucas.Solutions.IO
 {
     using Lucas.Solutions.Automation;
 
-    public interface ITransferWorker : IWorker<Transfer>, IProgress
+    public interface ITransferWorker : IWork<Transfer>, IProgress
     {
         Transfer Transfer { get; set; }
     }

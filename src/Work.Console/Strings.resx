@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CMD_CLEAR_EXAMPLE" xml:space="preserve">
+    <value>clear</value>
+  </data>
+  <data name="CMD_CLEAR_SUMMARY" xml:space="preserve">
+    <value>Clear the screen</value>
+  </data>
+  <data name="CMD_CLEAR_SYNTAX" xml:space="preserve">
+    <value>clear</value>
+  </data>
+  <data name="CMD_COUNT_SUMMARY" xml:space="preserve">
+    <value>Returns the number of existing shape elements. If one or more shape types are specifies as arguments the result will be filtered. If no argument is specified all it will be the total of all.</value>
+  </data>
+  <data name="CMD_COUNT_SYNTAX" xml:space="preserve">
+    <value>count [shape1, ... shapeN]</value>
+  </data>
+  <data name="CMD_EXIT_EXAMPLE" xml:space="preserve">
+    <value>exit</value>
+  </data>
+  <data name="CMD_EXIT_SUMMARY" xml:space="preserve">
+    <value>Exit and close the application</value>
+  </data>
+  <data name="CMD_EXIT_SYNTAXIS" xml:space="preserve">
+    <value>exit</value>
+  </data>
+  <data name="CMD_HELP_EXAMPLE" xml:space="preserve">
+    <value>help run</value>
+  </data>
+  <data name="CMD_HELP_SUMMARY" xml:space="preserve">
+    <value>Lists one or more  and command definitions. If no argument is specifies it will list all command definitions.</value>
+  </data>
+  <data name="CMD_HELP_SYNTAX" xml:space="preserve">
+    <value>help [cmd1, ... cmdN]</value>
+  </data>
+  <data name="CMD_MASTER_EXAMPLE" xml:space="preserve">
+    <value>master transfers</value>
+  </data>
+  <data name="CMD_MASTER_SUMMARY" xml:space="preserve">
+    <value>Display masterdata. If one or more set are specifies as arguments the result will be filtered. If no argument is specified all masterdata will be printed.</value>
+  </data>
+  <data name="CMD_MASTER_SYNTAX" xml:space="preserve">
+    <value>master [set1, ... setN]</value>
+  </data>
+  <data name="CMD_RUN_EXAMPLE" xml:space="preserve">
+    <value>run UploadOrders, DownloadStatus</value>
+  </data>
+  <data name="CMD_RUN_SUMMARY" xml:space="preserve">
+    <value>Starts a transfer o more. If no transfer name is specified, all transders are run in parallel.</value>
+  </data>
+  <data name="CMD_RUN_SYNTAX" xml:space="preserve">
+    <value>run [transfer1, ...transferN]</value>
+  </data>
+  <data name="CMD_STATUS_EXAMPLE" xml:space="preserve">
+    <value>status UploadOrders, DownloadStatus</value>
+  </data>
+  <data name="CMD_STATUS_SUMMARY" xml:space="preserve">
+    <value>Displays the status of one or more transfers. If no transfer name is specified, all transfers statuses are displayed.</value>
+  </data>
+  <data name="CMD_STATUS_SYNTAX" xml:space="preserve">
+    <value>status [transfer1, ... transferN]</value>
+  </data>
+  <data name="CMD_TRANSFER_SUCCESS" xml:space="preserve">
+    <value>Transfer \"{0}\" completed successfuly.</value>
+  </data>
+  <data name="ERROR_ARGUMENT_COUNT" xml:space="preserve">
+    <value>{0} requires {1} argument values and we got {2}.</value>
+  </data>
+  <data name="ERROR_ARGUMENT_TYPE" xml:space="preserve">
+    <value>Could not parse to {0} token \"{1}\" at position {2}.</value>
+  </data>
+  <data name="ERROR_CANT_WRITE_TO_QUEUE" xml:space="preserve">
+    <value>Can't write messages to queue \"{0}\".</value>
+  </data>
+  <data name="ERROR_FILE_NOT_FOUND" xml:space="preserve">
+    <value>File "{0}" was not found.</value>
+  </data>
+  <data name="ERROR_PRINT" xml:space="preserve">
+    <value>=&gt; Error: </value>
+  </data>
+  <data name="ERROR_UNKNOW_REQUEST" xml:space="preserve">
+    <value>Your request doesn't seem valid.</value>
+  </data>
+  <data name="HELP_CMD_DEFINITION_FORMAT" xml:space="preserve">
+    <value>=&gt; {0}:\n\tSyntax: {1}:\n\tSummary: {2}\n\tExample: {3}</value>
+  </data>
+  <data name="HELP_SHAPE_DEFINITION_FORMAT" xml:space="preserve">
+    <value>=&gt; {0}:\n\tSummary: {1}\n\tExample: {2}</value>
+  </data>
+  <data name="LISTING_SHAPES_CONTAINING_POINT" xml:space="preserve">
+    <value>=&gt; Listing Shapes containin point at {0} {1}...</value>
+  </data>
+  <data name="LISTING_SHAPES_OVERLAPING_SHAPE" xml:space="preserve">
+    <value>=&gt; Listing Shapes overlaping {0} {1}...</value>
+  </data>
+  <data name="PROMPT" xml:space="preserve">
+    <value>&gt; </value>
+  </data>
+  <data name="PROMPT_FILE_OVERWRITE" xml:space="preserve">
+    <value>File "{0}" already exists. Do you want to overwrite it (y/n)?</value>
+  </data>
+  <data name="SHAPE_COUNT_FORMAT" xml:space="preserve">
+    <value>=&gt; Count: {0}</value>
+  </data>
+  <data name="SHAPE_POLYGON_SUMMARY" xml:space="preserve">
+    <value>A poligon. The number of sides is 3 or more.</value>
+  </data>
+  <data name="SHAPE_PRINT" xml:space="preserve">
+    <value>=&gt; shape {0}: </value>
+  </data>
+  <data name="WARNING_PRINT" xml:space="preserve">
+    <value>WARNING: </value>
+  </data>
+</root>

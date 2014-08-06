@@ -63,14 +63,6 @@
       <Project>{682880aa-4283-448f-8c89-0a0c0b0b1888}</Project>
       <Name>Lucas.Solutions.Core.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Talk.Business\Lucas.Solutions.Talk.Business.csproj">
-      <Project>{ee8091a6-a7d6-4f8d-84c5-ad613cb336c3}</Project>
-      <Name>Lucas.Solutions.Talk.Business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Talk.Contract\Lucas.Solutions.Talk.Contract.csproj">
-      <Project>{43072f13-6e99-40be-913f-61b68fd56b57}</Project>
-      <Name>Lucas.Solutions.Talk.Contract</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Work.Businness\Lucas.Solutions.Work.Businness.csproj">
       <Project>{21c0ce92-8919-4257-952c-916b441a114c}</Project>
       <Name>Lucas.Solutions.Work.Businness</Name>

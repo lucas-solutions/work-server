@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Lucas.Solutions
 {
     using Lucas.Solutions.Configuration;
+    using Lucas.Solutions.IO;
     using System.IO;
 
     class Program
@@ -231,31 +232,97 @@ namespace Lucas.Solutions
                 });
 
             Register(
-                keyword: "list",
-                syntax: () => Strings.CMD_LIST_SYNTAX,
-                summary: () => Strings.CMD_LIST_SUMMARY,
-                example: () => Strings.CMD_LIST_EXAMPLE,
+                keyword: "run",
+                syntax: () => Strings.CMD_RUN_SYNTAX,
+                summary: () => Strings.CMD_RUN_SUMMARY,
+                example: () => Strings.CMD_RUN_EXAMPLE,
                 perform: (string[] args) =>
                 {
-                    if (args.Length > 0)
+                    var container = new ConfigurationContainer();
+                    var transfers = container.Transfers;
+
+                    if (args.Length == 0)
                     {
-                        /*var matches = _canvas.Keys.Select(key => new { Key = key, Value = _canvas[key] }).Where(o => o.Value != null && args.Contains(o.Value.GetType().Name.ToLower())).ToArray();
-                        Console.WriteLine(Strings.SHAPE_COUNT_FORMAT, matches.Length);
-                        foreach (var shape in matches)
-                        {
-                            Console.Write(Strings.SHAPE_PRINT, shape.Key);
-                            Console.WriteLine(shape.Value.Print());
-                        }*/
+                        args = transfers.Select(transfer => transfer.Name).ToArray();
                     }
-                    else
+
+                    foreach (var name in args)
                     {
-                        /*Console.WriteLine(Strings.SHAPE_COUNT_FORMAT, _canvas.Count);
-                        foreach (var key in _canvas.Keys)
+                        var transfer = transfers.FirstOrDefault(tran => tran.Name == name);
+
+                        var worker = new TransferWorker() { Transfer = transfer };
+                        var task = worker.WorkAsync();
+
+                        if (transfer == null)
                         {
-                            var shape = _canvas[key];
-                            Console.Write(Strings.SHAPE_PRINT, key);
-                            Console.WriteLine(shape.Print());
-                        }*/
+                            Console.WriteLine("Transfer \"{0}\" not found.");
+                        }
+                    }
+                });
+
+            Register(
+                keyword: "master",
+                syntax: () => Strings.CMD_MASTER_SYNTAX,
+                summary: () => Strings.CMD_MASTER_SUMMARY,
+                example: () => Strings.CMD_MASTER_EXAMPLE,
+                perform: (string[] args) =>
+                {
+                    var container = new ConfigurationContainer();
+
+                    if (args.Length == 0)
+                    {
+                        args = new[] { "hosts", "users", "roles", "transfers" };
+                    }
+
+                    foreach (var set in args)
+                    {
+                        switch (set.ToUpperInvariant())
+                        {
+                            case "HOSTS":
+                                Console.WriteLine("Hosts:");
+                                foreach (var host in container.Hosts)
+                                {
+                                    Console.WriteLine("* Host (Name: {0}, Address: {1}, Port: {2}, Protocol: {3})", host.Name, host.Address, host.Port, host.Protocol);
+                                }
+                                Console.WriteLine();
+                                break;
+
+                            case "USERS":
+                                Console.WriteLine("Users:");
+                                foreach (var user in container.Users)
+                                {
+                                    Console.WriteLine("* User (Email: {0}, Roles: {1})", user.Email, string.Join(", ", user.Roles.Select(role => role.Name)));
+                                }
+                                Console.WriteLine();
+                                break;
+
+                            case "ROLES":
+                                Console.WriteLine("Roles:");
+                                foreach (var role in container.Roles)
+                                {
+                                    Console.WriteLine("* Role (Name: {0})", role.Name);
+                                }
+                                Console.WriteLine();
+                                break;
+
+                            case "TRANSFERS":
+                                Console.WriteLine("Transfers:");
+                                foreach (var transfer in container.Transfers)
+                                {
+                                    Console.WriteLine("* Transfer (Name: {0}, Start: {1}, Parties:", transfer.Name, transfer.Start);
+                                    foreach (var party in transfer.Parties)
+                                    {
+                                        Console.WriteLine("    * Party (Name: {0}, Direction: {1}, Email: {2}, Host: {3})", party.Name, party.Direction, party.Email, party.Host);
+                                    }
+                                    Console.WriteLine("  )");
+                                }
+                                Console.WriteLine();
+                                break;
+
+                            default:
+                                Console.WriteLine("Unrecognized set \"{0}\"", set);
+                                break;
+                        }
                     }
                 });
         }
@@ -271,7 +338,7 @@ namespace Lucas.Solutions
             };
         }
 
-        void Run()
+        void Masterdata()
         {
             var container = new ConfigurationContainer();
 
