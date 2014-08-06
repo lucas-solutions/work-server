@@ -1,0 +1,342 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="tabbed">
+    <input data-bind="checked: TransferTabActive" class="hidden" id="transfer-tab" name="dashboard" type="radio" />
+    <label for="transfer-tab">Transfers</label>
+    <div class="container">
+        <div id="transfer-grid" class="col-xl-10 col-lg-9 col-md-8 col-sm-12" style="height: 100%"></div>
+        <div id="fransfer-form" class="col-xl-2 col-lg-3 col-md-4 col-sm-12">
+            <form action="" method="put">
+                @*<label for="FullName">Full name:</label>
+                    <input data-bind="value: fullName" name="FullName" title="Full Name" type="text" />
+                    <label for="Department">Department</label>
+                    <input data-bind="value: department" name="Department" title="Department" type="text" />
+                    <fieldset class="user-roles">
+                        <legend>Roles</legend>
+                        <label><input data-bind="checked: roles.admin" name="admin" title="Admin" type="checkbox" />Admin</label>
+                    </fieldset>
+                    <button type="submit">Update</button>*@
+            </form>
+        </div>
+    </div>
+
+    <input data-bind="checked: FileTabActive" class="hidden" id="file-tab" name="dashboard" type="radio" />
+    <label for="file-tab">File Trace</label>
+    <div class="container" id="file-grid" style="height: 100%"></div>
+
+    <input data-bind="checked: IncomingTabActive" class="hidden" id="incoming-tab" name="dashboard" type="radio" />
+    <label for="incoming-tab">Incoming Trace</label>
+    <div class="container" id="incoming-grid" style="height: 100%"></div>
+
+    <input data-bind="checked: OutgoingTabActive" class="hidden" id="outgoing-tab" name="dashboard" type="radio" />
+    <label for="outgoing-tab">Outgoing Trace</label>
+    <div class="container" id="outgoing-grid" style="height: 100%"></div>
+
+    <input data-bind="checked: PartyTabActive" class="hidden" id="party-tab" name="dashboard" type="radio" />
+    <label for="party-tab">Parties</label>
+    <div class="container">
+        <div id="party-grid" class="col-xl-10 col-lg-9 col-md-8 col-sm-12" style="height: 100%"></div>
+        <div id="party-form" class="col-xl-2 col-lg-3 col-md-4 col-sm-12">
+            @*<form action="" method="put">
+                    <label for="FullName">Full name:</label>
+                    <input data-bind="value: User.FullName" name="FullName" title="Full Name" type="text" />
+                    <label for="Department">Department</label>
+                    <input data-bind="value: User.Department" name="Department" title="Department" type="text" />
+                    <fieldset class="user-roles">
+                        <legend>Roles</legend>
+                        <label><input data-bind="checked: User.Roles.Admin" name="admin" title="Admin" type="checkbox" />Admin</label>
+                    </fieldset>
+                    <button type="submit">Update</button>
+                </form>*@
+        </div>
+    </div>
+
+    <input data-bind="checked: UserTabActive" class="hidden" id="user-tab" name="dashboard" type="radio" />
+    <label for="user-tab">Users</label>
+    <div class="container">
+        <div id="user-grid" class="col-xl-10 col-lg-9 col-md-8 col-sm-12" style="height: 100%"></div>
+        <form action="#" id="user-form" class="col-xl-2 col-lg-3 col-md-4 col-sm-12">
+            <label for="user-fullName">Full name:</label>
+            <input data-bind="value: User.FullName" id="user-fullname" name="FullName" placeholder="Full Name" title="Full Name" type="text" />
+            <label for="user-department">Department:</label>
+            <input data-bind="value: User.Department" id="user-department" name=" department" placeholder="Department" title="Department" type="text" />
+            <fieldset id="user-roles">
+                <legend>Roles</legend>
+                <input data-bind="checked: User.Roles.Admin" id="user-role-admin" name="Admin" title="Administrator" type="checkbox" />
+                <label for="user-role-admin">Administrator</label>
+                <br />
+                <input data-bind="checked: User.Roles.Developer" id="user-role-developer" name="Developer" title="Developer" type="checkbox" />
+                <label for="user-role-developer">Developer</label>
+                <br />
+            </fieldset>
+            <button id="user-update" type="button">Update</button>
+        </form>
+    </div>
+</div>
+@section scripts {
+    <script src="/scripts/models/host.js"></script>
+    <script src="/scripts/models/file.js"></script>
+    <script src="/scripts/models/incoming.js"></script>
+    <script src="/scripts/models/outgoing.js"></script>
+    <script src="/scripts/models/party.js"></script>
+    <script src="/scripts/models/transfer.js"></script>
+    <script src="/scripts/models/user.js"></script>
+    <script>
+        (function () {
+            var hostGrid,
+                hostStore;
+
+            var fileGrid,
+                fileStore;
+
+            var incomingGrid,
+                incomingStore;
+
+            var outgoingGrid,
+                outgoingStore;
+
+            var party,
+                partyGrid,
+                partyStore;
+
+            var transfer,
+                transferGrid,
+                transferStore;
+
+            var user,
+                userGrid,
+                userStore;
+
+            var storyTitleFormatter,
+                dateFormatter;
+
+            storyTitleFormatter = function (row, cell, value, columnDef, dataContext) {
+                s = "<b><a href='" + dataContext["url"] + "' target=_blank>" +
+                          dataContext["title"] + "</a></b><br/>";
+                desc = dataContext["text"];
+                if (desc) { // on Hackernews many stories don't have a description
+                    s += desc;
+                }
+                return s;
+            };
+
+            dateFormatter = function (row, cell, value, columnDef, dataContext) {
+                return (value.getMonth() + 1) + "/" + value.getDate() + "/" + value.getFullYear();
+            };
+
+            var scope;
+
+            function initHostGrid(selector) {
+            };
+
+            function initFileGrid(selector) {
+            };
+
+            function initIncomingGrid(selector) {
+            };
+
+            function initOutgoingGrid(selector) {
+            };
+
+            function initPartyGrid(selector) {
+            };
+
+            function initTransferGrid(selector) {
+            };
+
+            function initUserGrid(selector) {
+                //"Department":"Contractor","Email":"Lucas@lucas.solutions","FullName":"Lucas Martinez","Role":"admin","IncomingCount":0,"OutgoingCount":0,"TranferCount":0},{"Department":"Contractor","Email":"lmartinez@bmkllc.com","FullName":"Lucas Martinez","Role":"","IncomingCount":0,"OutgoingCount":0,"TranferCount":0}]}
+                var columns = [
+                  { id: "Email", name: "Email", field: "Email", sortable: true },
+                  { id: "FullName", name: "FullName", field: "FullName", sortable: true },
+                  { id: "Department", name: "Department", field: "Department", sortable: true },
+                  { id: "Role", name: "Role", field: "Role", sortable: true },
+                  { id: "IncomingCount", name: "Incoming", field: "IncomingCount", sortable: true },
+                  { id: "OutgoingCount", name: "Outgoing", field: "OutgoingCount", sortable: true },
+                  { id: "TransferCount", name: "Transfers", field: "TransferCount", sortable: true }
+                ];
+                /*, formatter: storyTitleFormatter, cssClass: "cell-story"*/
+                var options = {
+                    enableCellNavigation: true,
+                    enableColumnReorder: false
+                };
+
+                var $spinner = null;
+
+                userStore = new Scope.UserStore();
+
+                userGrid = new Slick.Grid(selector, userStore.data, columns, options);
+
+                userGrid.setSelectionModel(new Slick.RowSelectionModel());
+
+                userGrid.onSelectedRowsChanged.subscribe(function (e, args) {
+                    if (args.rows.length === 1) {
+                        var record = args.grid.getData()[args.rows[0]];
+                        scope.User.Email(record.Email);
+                        scope.User.FullName(record.FullName);
+                        scope.User.Department(record.Department);
+                        //scope.User.Roles(record.Roles);
+                    }
+                });
+
+                userGrid.onViewportChanged.subscribe(function (e, args) {
+                    var vp = userGrid.getViewport();
+                    userStore.ensureData(vp.top, vp.bottom);
+                });
+
+                userGrid.onSort.subscribe(function (e, args) {
+                    userStore.setSort(args.sortCol.field, args.sortAsc ? 1 : -1);
+                    var vp = userGrid.getViewport();
+                    userStore.ensureData(vp.top, vp.bottom);
+                });
+
+                userStore.onDataLoading.subscribe(function () {
+                    if (!$spinner) {
+                        var $g = $(selector);
+
+                        $spinner = $("<span class='user-grid-spinner'><label>Buffering...</label></span>")
+                            .appendTo($g.parent());
+
+                        $spinner
+                            .css("position", "absolute")
+                            .css("top", $g.position().top + $g.height() / 2 - $spinner.height() / 2)
+                            .css("left", $g.position().left + $g.width() / 2 - $spinner.width() / 2);
+                    }
+
+                    $spinner.show();
+                });
+
+                userStore.onDataLoaded.subscribe(function (e, args) {
+                    for (var i = args.from; i <= args.to; i++) {
+                        userGrid.invalidateRow(i);
+                    }
+
+                    userGrid.updateRowCount();
+                    userGrid.render();
+
+                    $spinner.fadeOut();
+                });
+
+                $(".users-grid-search").keyup(function (e) {
+                    if (e.which == 13) {
+                        userStore.setSearch($(this).val());
+                        var vp = grid.getViewport();
+                        userStore.ensureData(vp.top, vp.bottom);
+                    }
+                });
+
+                userStore.setSearch($(".users-grid-search").val());
+                userStore.setSort("Email", -1);
+                userGrid.setSortColumn("Email", false);
+
+                // load the first page
+                userGrid.onViewportChanged.notify();
+            };
+
+            function onHostDeleteClick(event) {
+                console.log('Host delete clicked');
+            };
+
+            function onHostSaveClick(event) {
+                console.log('Host save clicked');
+            };
+
+            function onPartyAddClick(event) {
+                console.log('Party add clicked');
+            };
+
+            function onPartyDeleteClick(event) {
+                console.log('Party delete clicked');
+            };
+
+            function onPartyRemoveClick(event) {
+                console.log('Party remove clicked');
+            };
+
+            function onPartySaveClick(event) {
+                console.log('Party save clicked');
+            };
+
+            function onRoleDeleteClick(event) {
+                console.log('Role delete clicked');
+            };
+
+            function onRoleSaveClick(event) {
+                console.log('Role save clicked');
+            };
+
+            function onTransferCancelClick(event) {
+                console.log('Transfer cancel clicked');
+            };
+
+            function onTransferSaveClick(event) {
+                console.log('Transfer save clicked');
+            };
+
+            function onUserDeleteClick(event) {
+                console.log('User delete clicked');
+            };
+
+            function onUserSaveClick(event) {
+                console.log('User save clicked');
+            };
+
+            $(function () {
+
+                function DashboardScope() {
+                    // internationalization (TODO)
+                    this.i18n = ko.observable({});
+
+                    // view poperties
+                    this.FileTabActive = ko.observable(false);
+                    this.IncomingTabActive = ko.observable(false);
+                    this.OutgoingTabActive = ko.observable(false);
+                    this.PartyTabActive = ko.observable(false);
+                    this.TransferTabActive = ko.observable(false);
+                    this.UserTabActive = ko.observable(false);
+
+                    // data properties
+                    this.FileSearch = ko.observable('');
+                    this.Host = new Scope.Host();
+                    this.HostFilter = ko.observable('');
+                    this.IncomingFilter = ko.observable('');
+                    this.OutgoingFilter = ko.observable('');
+                    this.Party = new Scope.Party();
+                    this.PartyFilter = ko.observable('');
+                    this.Transfer = new Scope.Transfer();
+                    this.TransferFilter = ko.observable('');
+                    this.User = new Scope.User();
+                    this.UserFilter = ko.observable('');
+
+                    // event handlers
+                    this.onHostDeleteClick = onHostDeleteClick;
+                    this.onHostSaveClick = onHostSaveClick;
+                    this.onPartyAddClick = onPartyAddClick;
+                    this.onPartyDeleteClick = onPartyDeleteClick;
+                    this.onPartyRemoveClick = onPartyRemoveClick;
+                    this.onPartySaveClick = onPartySaveClick;
+                    this.onTransferCancelClick = onTransferCancelClick;
+                    this.onTransferSaveClick = onTransferSaveClick;
+                    this.onUserDeleteClick = onUserDeleteClick;
+                    this.onUserSaveClick = onUserSaveClick;
+                };
+
+                scope = new DashboardScope();
+
+                ko.applyBindings(scope);
+
+                initFileGrid('#file-grid');
+                initHostGrid('#host-grid');
+                initIncomingGrid('#incoming-grid');
+                initOutgoingGrid('#outgoing-grid');
+                initPartyGrid('#party-grid');
+                initTransferGrid('#transfer-grid');
+                initUserGrid('#user-grid');
+
+                scope.UserTabActive(true);
+            });
+        })();
+    </script>
+}

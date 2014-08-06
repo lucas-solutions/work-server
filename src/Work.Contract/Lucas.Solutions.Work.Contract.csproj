@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4D49DF65-18A2-4544-A713-C20D33E1CAC8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lucas.Solutions</RootNamespace>
+    <AssemblyName>Work.Contract</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Automation\ITrace.cs" />
+    <Compile Include="Automation\ITraceStore.cs" />
+    <Compile Include="Automation\Task.cs" />
+    <Compile Include="Automation\TaskStart.cs" />
+    <Compile Include="Automation\Trace.cs" />
+    <Compile Include="Configuration\ConfigurationContainer.cs" />
+    <Compile Include="Configuration\RoleElementCollection.cs" />
+    <Compile Include="Configuration\RoleElement.cs" />
+    <Compile Include="Configuration\MasterdataSection.cs" />
+    <Compile Include="Configuration\TaskElement.cs" />
+    <Compile Include="Configuration\TransferElement.cs" />
+    <Compile Include="Configuration\PartyElement.cs" />
+    <Compile Include="Configuration\UserElement.cs" />
+    <Compile Include="Configuration\HostElement.cs" />
+    <Compile Include="Configuration\TransferElementCollection.cs" />
+    <Compile Include="Configuration\PartyElementCollection.cs" />
+    <Compile Include="Configuration\UserElementCollection.cs" />
+    <Compile Include="Configuration\HostElementCollection.cs" />
+    <Compile Include="IEntityStore.cs" />
+    <Compile Include="IO\TransferDirectory.cs" />
+    <Compile Include="IO\TransferFile.cs" />
+    <Compile Include="IO\HostProtocol.cs" />
+    <Compile Include="IO\IDirectoryProvider.cs" />
+    <Compile Include="IO\IIncomingTraceStore.cs" />
+    <Compile Include="IO\IncomingTrace.cs" />
+    <Compile Include="IO\IOutgoingTraceStore.cs" />
+    <Compile Include="IO\IPartyStore.cs" />
+    <Compile Include="IO\ITransferProvider.cs" />
+    <Compile Include="IO\ITransferTraceStore.cs" />
+    <Compile Include="IO\ITransferWorker.cs" />
+    <Compile Include="IO\IHostStore.cs" />
+    <Compile Include="IO\ITransferStore.cs" />
+    <Compile Include="IO\OutgoingTrace.cs" />
+    <Compile Include="IO\Party.cs" />
+    <Compile Include="IO\TransferDirection.cs" />
+    <Compile Include="IO\TransferTrace.cs" />
+    <Compile Include="IProgress.cs" />
+    <Compile Include="Automation\ITask.cs" />
+    <Compile Include="Automation\ITaskStore.cs" />
+    <Compile Include="IO\Host.cs" />
+    <Compile Include="IO\Transfer.cs" />
+    <Compile Include="Automation\IWorker.cs" />
+    <Compile Include="IQueriableEntityStore.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Automation\TaskState.cs" />
+    <Compile Include="Stores\HostMemoryStore.cs" />
+    <Compile Include="Stores\TaskMemoryStore.cs" />
+    <Compile Include="Stores\UserMemoryStore.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Contract\Lucas.Solutions.Core.Contract.csproj">
+      <Project>{eef2d26a-509c-457f-9e4d-f0c372945f0f}</Project>
+      <Name>Lucas.Solutions.Core.Contract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

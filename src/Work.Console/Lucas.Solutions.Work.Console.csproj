@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{94CBA463-2E77-401B-8998-D560D8AEF7F1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lucas.Solutions</RootNamespace>
+    <AssemblyName>Work.Console</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Contract\Lucas.Solutions.Core.Contract.csproj">
+      <Project>{eef2d26a-509c-457f-9e4d-f0c372945f0f}</Project>
+      <Name>Lucas.Solutions.Core.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Infrastructure\Lucas.Solutions.Core.Infrastructure.csproj">
+      <Project>{682880aa-4283-448f-8c89-0a0c0b0b1888}</Project>
+      <Name>Lucas.Solutions.Core.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Talk.Business\Lucas.Solutions.Talk.Business.csproj">
+      <Project>{ee8091a6-a7d6-4f8d-84c5-ad613cb336c3}</Project>
+      <Name>Lucas.Solutions.Talk.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Talk.Contract\Lucas.Solutions.Talk.Contract.csproj">
+      <Project>{43072f13-6e99-40be-913f-61b68fd56b57}</Project>
+      <Name>Lucas.Solutions.Talk.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Work.Businness\Lucas.Solutions.Work.Businness.csproj">
+      <Project>{21c0ce92-8919-4257-952c-916b441a114c}</Project>
+      <Name>Lucas.Solutions.Work.Businness</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Work.Contract\Lucas.Solutions.Work.Contract.csproj">
+      <Project>{4d49df65-18a2-4544-a713-c20d33e1cac8}</Project>
+      <Name>Lucas.Solutions.Work.Contract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Masterdata.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

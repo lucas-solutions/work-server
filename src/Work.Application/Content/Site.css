@@ -1,0 +1,109 @@
+﻿html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+    body > header {
+        height: 50px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    body > footer {
+        bottom: 0;
+        height: 20px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+    }
+
+    /* Set padding to keep content from hitting the edges */
+    body > section {
+        /*overflow: scroll;*/
+        padding-left: 15px;
+        padding-right: 15px;
+        height: 100%;
+        width: 100%;
+    }
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.dashboard {
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+}
+
+.tabbed {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+    .tabbed > input {
+        display: none;
+    }
+
+    .tabbed > label {
+        background-color: #808080;
+        color: #ffffff;
+        display: inline-block;
+        height: 30px;
+    }
+
+    .tabbed > .container {
+        display: block;
+        height: calc(100% - 40px);
+        left: 0;
+        position: absolute;
+        top: 40px;
+        width: 100%;
+    }
+
+    .tabbed > input:checked + label {
+        background-color: #00ffff;
+        color: #ffffff;
+    }
+
+    .tabbed > input:not(:checked) + label + .container {
+        display: none;
+    }
+
+    form fieldset {
+    }
+
+    form label {
+        display: block;
+        font-family: "Tahoma";
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    form legend {
+        font-family: "Tahoma";
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    form input {
+        display: block;
+    }
+
+    form input[type=checkbox],
+    form input[type=checkbox] + label {
+        display: inline;
+        vertical-align: top;
+    }

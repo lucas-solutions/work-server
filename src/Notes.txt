@@ -1,0 +1,2 @@
+
+Install-Package RavenDB.Embedded -DependencyVersion Highest
