@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <masterdata application="WorkConsole">
-  <hosts>
-    <host name="Local" address="c:\archive\local" protocol="FileSystem" />
-    <host name="Remote" address="c:\archove\remote" protocol="FileSystem" />
-  </hosts>
-  <roles>
-    <role name="Admin" />
-  </roles>
-  <transters>
-    <transfer name="Test" start="">
-      <parties>
-        <party name="Local" host="Local" path="incoming" direction="In" />
-        <party name="Remove" host="Remove" path="outgoing" direction="Out" />
-      </parties>
-    </transfer>
-  </transters>
-  <users>
-    <user email="lucas@lucas.solutions" roles="Admin" />
-  </users>
-</masterdata>
+    <hosts>
+      <host name="Archive" address="c:\archive\" protocol="FileSystem" />
+      <host name="GoDaddy" address="ftp://50.62.160.29" protocol="FileTransfer" />
+    </hosts>
+    <roles>
+      <role name="Admin" />
+    </roles>
+    <transfers>
+      <transfer name="Test" start="">
+        <parties>
+          <party name="MyBucket" email="lucas@lucas.solutions" host="Archive" path="/bucket" direction="Out" />
+          <party name="GoDaddy" email="lucas@lucas.solutions" host="GoDaddy" path="/" direction="In" user="transferworker" password="poweruser1" />
+        </parties>
+      </transfer>
+    </transfers>
+    <users>
+      <user email="lucas@lucas.solutions" roles="Admin" />
+    </users>
+  </masterdata>

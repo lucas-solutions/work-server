@@ -19,12 +19,6 @@ namespace Lucas.Solutions.IO
             set;
         }
 
-        public string Credential
-        {
-            get;
-            set;
-        }
-
         public int Id
         {
             get;
@@ -56,6 +50,12 @@ namespace Lucas.Solutions.IO
         }
 
         public string Summary
+        {
+            get;
+            set;
+        }
+
+        public string User
         {
             get;
             set;

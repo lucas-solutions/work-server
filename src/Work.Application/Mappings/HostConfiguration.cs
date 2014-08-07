@@ -23,7 +23,7 @@ namespace Lucas.Solutions.Mappings
                     IsUnique = true
                 }));
 
-            Property(host => host.Credential)
+            Property(host => host.User)
                 .IsOptional()
                 .IsUnicode(false)
                 .HasMaxLength(0x40);

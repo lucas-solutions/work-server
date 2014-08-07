@@ -168,6 +168,15 @@
   <data name="CMD_RUN_SYNTAX" xml:space="preserve">
     <value>run [transfer1, ...transferN]</value>
   </data>
+  <data name="CMD_SCHEDULER_EXAMPLE" xml:space="preserve">
+    <value>scheduler start</value>
+  </data>
+  <data name="CMD_SCHEDULER_SUMMARY" xml:space="preserve">
+    <value>Start or stop the scheduler. For scheduler status use with no parameter.</value>
+  </data>
+  <data name="CMD_SCHEDULER_SYNTAX" xml:space="preserve">
+    <value>scheduler [start | stop]</value>
+  </data>
   <data name="CMD_STATUS_EXAMPLE" xml:space="preserve">
     <value>status UploadOrders, DownloadStatus</value>
   </data>

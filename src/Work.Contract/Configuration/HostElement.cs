@@ -11,12 +11,12 @@ namespace Lucas.Solutions.Configuration
             return el == null ? null : new Host
             {
                 Address = el.Address,
-                Credential = el.Credential,
                 Name = el.Name,
                 Password = el.Password,
                 Port = el.Port,
-                //Protocol = el.Protocol,
-                Summary = el.Summary
+                Protocol = el.Protocol,
+                Summary = el.Summary,
+                User = el.User,
             };
         }
 
@@ -25,13 +25,6 @@ namespace Lucas.Solutions.Configuration
         {
             get { return (string)base["address"]; }
             set { base["address"] = value; }
-        }
-
-        [ConfigurationProperty("credential", IsRequired = false)]
-        public string Credential
-        {
-            get { return (string)base["credential"]; }
-            set { base["credential"] = value; }
         }
 
         [ConfigurationProperty("name", IsRequired = true)]
@@ -56,9 +49,9 @@ namespace Lucas.Solutions.Configuration
         }
 
         [ConfigurationProperty("protocol", IsRequired = true)]
-        public string Protocol
+        public HostProtocol Protocol
         {
-            get { return (string)base["protocol"]; }
+            get { return (HostProtocol)base["protocol"]; }
             set { base["protocol"] = value; }
         }
 
@@ -67,6 +60,13 @@ namespace Lucas.Solutions.Configuration
         {
             get { return (string)base["summary"]; }
             set { base["summary"] = value; }
+        }
+
+        [ConfigurationProperty("user", IsRequired = false)]
+        public string User
+        {
+            get { return (string)base["user"]; }
+            set { base["user"] = value; }
         }
     }
 }

@@ -214,6 +214,33 @@ namespace Lucas.Solutions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to scheduler start.
+        /// </summary>
+        internal static string CMD_SCHEDULER_EXAMPLE {
+            get {
+                return ResourceManager.GetString("CMD_SCHEDULER_EXAMPLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start or stop the scheduler. For scheduler status use with no parameter..
+        /// </summary>
+        internal static string CMD_SCHEDULER_SUMMARY {
+            get {
+                return ResourceManager.GetString("CMD_SCHEDULER_SUMMARY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to scheduler [start | stop].
+        /// </summary>
+        internal static string CMD_SCHEDULER_SYNTAX {
+            get {
+                return ResourceManager.GetString("CMD_SCHEDULER_SYNTAX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to status UploadOrders, DownloadStatus.
         /// </summary>
         internal static string CMD_STATUS_EXAMPLE {

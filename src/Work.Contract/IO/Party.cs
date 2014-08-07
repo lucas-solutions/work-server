@@ -3,7 +3,7 @@ namespace Lucas.Solutions.IO
 {
     public class Party
     {
-        public virtual string Credential
+        public virtual string User
         {
             get;
             set;

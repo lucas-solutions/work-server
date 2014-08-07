@@ -14,14 +14,18 @@ namespace Lucas.Solutions.IO
         {
         }
 
-        public IEnumerable<LocalFile> GetFiles()
+        public string Path
         {
-            var path = System.IO.Path.Combine(Party.Host.Address, Party.Path);
-            var info = new DirectoryInfo(path);
+            get { return System.IO.Path.Combine(Party.Host.Address, Party.Path.Trim(new [] { '/', '\\'})); } 
+        }
+
+        public ICollection<LocalFile> GetFiles()
+        {
+            var info = new DirectoryInfo(Path);
 
             return info.Exists
                 ? Array.AsReadOnly(info.GetFiles("*.*", Party.Recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)
-                    .Select(file => new LocalFile(file, this))
+                    .Select(file => new LocalFile(file.FullName.Substring(info.FullName.Length), this))
                     .ToArray())
                 : null;
         }

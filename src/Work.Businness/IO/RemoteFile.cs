@@ -10,8 +10,9 @@ namespace Lucas.Solutions.IO
 {
     public class RemoteFile : TransferFile
     {
-        public RemoteFile(RemoteDirectory directory)
+        public RemoteFile(string relativePath, RemoteDirectory directory)
         {
+            Path = relativePath;
             Directory = directory;
         }
 
@@ -26,58 +27,42 @@ namespace Lucas.Solutions.IO
             get { return new Uri(Directory.Url, Path); }
         }
 
-        protected static void Copy(Stream source, Stream target)
+        public override void Read(Stream outputStream, Action<float> progress)
         {
-            var buffer = new byte[0x1000];
-            int count, position = 0;
-            for (; buffer.Length == (count = source.Read(buffer, 0, buffer.Length)); position += count)
-                target.Write(buffer, 0, count);
-            target.Write(buffer, 0, count);
-            position += count;
+            var request = (FtpWebRequest)WebRequest.Create(Url);
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+            request.Credentials = Directory.Credentials;
+
+            var response = (FtpWebResponse)request.GetResponse();
+            var responseStream = response.GetResponseStream();
+
+            Copy(responseStream, outputStream, progress);
+            outputStream.Flush();
+            outputStream.Close();
+
+            responseStream.Close();
+
+            Console.WriteLine("Download File Complete, status {0}", response.StatusDescription);
+
+            response.Close();
         }
 
-        public Task PullAsync(Stream stream, Action<float> progress)
+        public override void Write(Stream inputStream, Action<float> progress)
         {
-            return new Task(() =>
-            {
-                var request = (FtpWebRequest)WebRequest.Create(Url);
-                request.Method = WebRequestMethods.Ftp.DownloadFile;
-                request.Credentials = Directory.Credentials;
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(Url);
+            request.Method = WebRequestMethods.Ftp.UploadFile;
+            request.Credentials = Directory.Credentials;
+            request.ContentLength = inputStream.Length;
 
-                var response = (FtpWebResponse)request.GetResponse();
-                var responseStream = response.GetResponseStream();
-                
-                Copy(responseStream, stream);
-                stream.Flush();
-                stream.Close();
+            var requestStream = request.GetRequestStream();
+            Copy(inputStream, requestStream, progress);
+            requestStream.Close();
 
-                responseStream.Close();
-                
-                Console.WriteLine("Download File Complete, status {0}", response.StatusDescription);
+            var response = (FtpWebResponse)request.GetResponse();
 
-                response.Close();
-            });
-        }
+            Console.WriteLine("Upload File Complete, status {0}", response.StatusDescription);
 
-        public override Task PushAsync(Stream stream, Action<float> progress)
-        {
-            return new Task(() =>
-            {
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(Url);
-                request.Method = WebRequestMethods.Ftp.UploadFile;
-                request.Credentials = Directory.Credentials;
-                request.ContentLength = stream.Length;
-
-                var requestStream = request.GetRequestStream();
-                Copy(stream, requestStream);
-                requestStream.Close();
-
-                var response = (FtpWebResponse)request.GetResponse();
-
-                Console.WriteLine("Upload File Complete, status {0}", response.StatusDescription);
-
-                response.Close();
-            });
+            response.Close();
         }
     }
 }

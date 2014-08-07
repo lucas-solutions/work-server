@@ -35,7 +35,7 @@ namespace Lucas.Solutions.Mappings
                     IsUnique = false
                 }));
 
-            Property(party => party.Credential)
+            Property(party => party.User)
                 .IsOptional()
                 .IsUnicode(false)
                 .HasMaxLength(0x40);

@@ -10,21 +10,15 @@ namespace Lucas.Solutions.Configuration
         {
             return el == null ? null : new Party
             {
-                Credential = el.Credential,
+                Direction = el.Direction,
                 Email = el.Email,
                 Host = new Host { Name = el.Host },
                 Name = el.Name,
                 Password = el.Password,
                 Path = el.Path,
-                Summary = el.Summary
+                Summary = el.Summary,
+                User = el.User,
             };
-        }
-
-        [ConfigurationProperty("credential", IsRequired = false)]
-        public virtual string Credential
-        {
-            get { return (string)base["credential"]; }
-            set { base["credential"] = value; }
         }
 
         [ConfigurationProperty("direction", IsRequired = true)]
@@ -74,6 +68,13 @@ namespace Lucas.Solutions.Configuration
         {
             get { return (string)base["summary"]; }
             set { base["summary"] = value; }
+        }
+
+        [ConfigurationProperty("user", IsRequired = false)]
+        public virtual string User
+        {
+            get { return (string)base["user"]; }
+            set { base["user"] = value; }
         }
     }
 }

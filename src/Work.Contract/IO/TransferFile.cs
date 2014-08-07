@@ -46,6 +46,18 @@ namespace Lucas.Solutions.IO
             set;
         }
 
-        public abstract Task PushAsync(Stream stream, Action<float> progress);
+        protected virtual void Copy(Stream inputStream, Stream outputStream, Action<float> progress)
+        {
+            var buffer = new byte[0x1000];
+            int count, position = 0;
+            for (; buffer.Length == (count = inputStream.Read(buffer, 0, buffer.Length)); position += count)
+                outputStream.Write(buffer, 0, count);
+            outputStream.Write(buffer, 0, count);
+            position += count;
+        }
+
+        public abstract void Read(Stream outputStream, Action<float> progress);
+
+        public abstract void Write(Stream inputStream, Action<float> progress);
     }
 }

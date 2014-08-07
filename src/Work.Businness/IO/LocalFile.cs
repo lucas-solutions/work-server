@@ -9,28 +9,43 @@ namespace Lucas.Solutions.IO
 {
     public class LocalFile : TransferFile
     {
-        private readonly LocalDirectory _directory;
-
-        public LocalFile(FileInfo info, LocalDirectory directory)
+        public LocalFile(string relativePath, LocalDirectory directory)
         {
-            _directory = directory;
-            Path = info.FullName.Substring(info.FullName.Length);
-            CreatedOn = info.CreationTime;
-            ModifiedOn = info.LastWriteTime;
-            Size = info.Length;
+            Directory = directory;
+            Path = relativePath;
         }
 
         public LocalDirectory Directory
         {
-            get { return _directory; }
+            get;
+            private set;
         }
 
-        public override Task PushAsync(Stream stream, Action<float> progress)
+        public override void Read(Stream outputStream, Action<float> progress)
         {
-            return new Task(() =>
-            {
+            var info = new FileInfo(System.IO.Path.Combine(Directory.Path, Path));
 
-            });
+            CreatedOn = info.CreationTime;
+            ModifiedOn = info.LastWriteTime;
+            Size = info.Length;
+
+            var inputStream = info.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
+            Copy(inputStream, outputStream, progress);
+            inputStream.Close();
+        }
+
+        public override void Write(Stream inputStream, Action<float> progress)
+        {
+            var info = new FileInfo(System.IO.Path.Combine(Directory.Path, Path));
+            
+            var outputStream = info.Open(FileMode.Create, FileAccess.Write, FileShare.None);
+            Copy(inputStream, outputStream, progress);
+            outputStream.Flush();
+            outputStream.Close();
+
+            CreatedOn = info.CreationTime;
+            ModifiedOn = info.LastWriteTime;
+            Size = info.Length;
         }
     }
 }

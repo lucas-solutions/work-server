@@ -25,9 +25,9 @@ namespace Lucas.Solutions.IO
                     return _credentials;
 
                 if (Party.Password != null)
-                    _credentials = new NetworkCredential(Party.Email, Party.Password);
+                    _credentials = new NetworkCredential(Party.User ?? Party.Email, Party.Password);
                 else if (Party.Host.Password != null)
-                    _credentials = new NetworkCredential(Party.Host.Credential, Party.Host.Password);
+                    _credentials = new NetworkCredential(Party.Host.User, Party.Host.Password);
                 else
                     _credentials = new NetworkCredential("anonymous", Party.Email);
 
@@ -39,16 +39,18 @@ namespace Lucas.Solutions.IO
         {
             get
             {
-                var url = new Uri(System.IO.Path.Combine(Party.Host.Address, Party.Path));
+                var url = new Uri(new Uri(Party.Host.Address, UriKind.Absolute), new Uri(Party.Path, UriKind.Relative));
 
                 if (url.Scheme != Uri.UriSchemeFtp)
-                    url = new Uri(Path.Combine("ftp://", url.AbsoluteUri));
+                {
+                    // log warning
+                }
 
                 return url;
             }
         }
 
-        public IEnumerable<RemoteFile> GetFiles()
+        public ICollection<RemoteFile> GetFiles()
         {
             var uri = new Uri(Party.Host.Address);
             if (uri.Scheme != Uri.UriSchemeFtp)
