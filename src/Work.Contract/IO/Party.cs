@@ -3,7 +3,7 @@ namespace Lucas.Solutions.IO
 {
     public class Party
     {
-        public virtual string User
+        public virtual string Certificate
         {
             get;
             set;
@@ -79,6 +79,12 @@ namespace Lucas.Solutions.IO
         }
 
         public virtual string Summary
+        {
+            get;
+            set;
+        }
+
+        public virtual string User
         {
             get;
             set;

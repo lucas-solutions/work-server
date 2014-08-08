@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Lucas.Solutions.IO
 {
+    using Lucas.Solutions.Persistence;
+    
     public interface ITransferTraceStore : IEntityStore<TransferTrace>, IQueryableEntityStore<TransferTrace>
     {
         /// <summary>

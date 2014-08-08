@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Lucas.Solutions.Automation
 {
+    using Lucas.Solutions.Persistence;
+
     public interface ITraceStore : IEntityStore<Trace>
     {
     }

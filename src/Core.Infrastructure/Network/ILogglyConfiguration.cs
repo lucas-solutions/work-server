@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace Lucas.Solutions.Diagnostics
+namespace Lucas.Solutions.Network
 {
     public interface ILogglyConfiguration
     {

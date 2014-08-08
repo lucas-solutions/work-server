@@ -23,7 +23,7 @@ namespace Lucas.Solutions.IO
 
         public override void Read(Stream outputStream, Action<float> progress)
         {
-            var info = new FileInfo(System.IO.Path.Combine(Directory.Path, Path));
+            var info = new FileInfo(System.IO.Path.Combine(Directory.Path, Path.Trim(new [] { '/', '\\' })));
 
             CreatedOn = info.CreationTime;
             ModifiedOn = info.LastWriteTime;

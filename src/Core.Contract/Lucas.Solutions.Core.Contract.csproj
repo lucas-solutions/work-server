@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="Authorization\Role.cs" />
     <Compile Include="EnumStore.cs" />
+    <Compile Include="Persistence\IEntityStore.cs" />
+    <Compile Include="Persistence\IQueriableEntityStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Authentication\User.cs" />
   </ItemGroup>

@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 
 namespace Lucas.Solutions.Automation
 {
+    using Lucas.Solutions.Persistence;
+
     public interface ITaskStore : IEntityStore<Task>
     {
         IQueryable<Task> Tasks { get; }

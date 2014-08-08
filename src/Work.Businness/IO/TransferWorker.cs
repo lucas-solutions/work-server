@@ -15,11 +15,7 @@ namespace Lucas.Solutions.IO
         private DirectoryInfo _temporal = null;
         private Transfer _transfer;
         private ICollection<TransferDirectory> _directories;
-        private TaskScheduler _localReadScheduler;
-        private TaskScheduler _localWriteScheduler;
-        private TaskScheduler _remoteReadScheduler;
-        private TaskScheduler _remoteWriteScheduler;
-        
+
 
         protected ICollection<TransferDirectory> Directories
         {
@@ -97,6 +93,15 @@ namespace Lucas.Solutions.IO
             return null;
         }
 
+        public void Work()
+        {
+            // collection
+            var outgoingTasks = Read();
+
+            // distribution
+            var incomingTasks = Write(outgoingTasks);
+        }
+
         public System.Threading.Tasks.Task WorkAsync()
         {
             return System.Threading.Tasks.Task.Factory.StartNew(() =>
@@ -116,6 +121,49 @@ namespace Lucas.Solutions.IO
 
                     System.Threading.Tasks.Task.WhenAll(incomingTasks);
                 });
+        }
+
+        protected virtual OutgoingTrace[] Read()
+        {
+            var localDirectories = Transfer.Parties
+                    .Where(party => party.Direction == TransferDirection.Out && party.Host.Protocol == HostProtocol.FileSystem)
+                    .Select(party => new LocalDirectory(party))
+                    .ToArray();
+
+            var remoteDirectories = Transfer.Parties
+                    .Where(party => party.Direction == TransferDirection.Out && party.Host.Protocol == HostProtocol.FileTransfer)
+                    .Select(party => new RemoteDirectory(party))
+                    .ToArray();
+
+            var localFiles = localDirectories.SelectMany(dir => dir.GetFiles());
+
+            var remoteFiles = remoteDirectories.SelectMany(dir => dir.GetFiles());
+
+            return Read(localFiles).Union(Read(remoteFiles)).ToArray();
+        }
+
+        protected virtual OutgoingTrace[] Read(IEnumerable<LocalFile> files)
+        {
+            var trances = new List<OutgoingTrace>();
+
+            foreach (var file in files)
+            {
+                trances.Add(Read(file, file.Directory.Party));
+            }
+
+            return trances.ToArray();
+        }
+
+        protected virtual OutgoingTrace[] Read(IEnumerable<RemoteFile> files)
+        {
+            var trances = new List<OutgoingTrace>();
+
+            foreach (var file in files)
+            {
+                trances.Add(Read(file, file.Directory.Party));
+            }
+
+            return trances.ToArray();
         }
 
         protected virtual OutgoingTrace Read(TransferFile file, Party party)
@@ -163,9 +211,13 @@ namespace Lucas.Solutions.IO
                     .Select(party => new RemoteDirectory(party))
                     .ToArray();
 
-            var remoteTasks = remoteDirectories.Select(dir => Task<ICollection<RemoteFile>>.Factory.StartNew(() => dir.GetFiles())).ToArray();
-
             var localTasks = localDirectories.Select(dir => Task<ICollection<LocalFile>>.Factory.StartNew(() => dir.GetFiles())).ToArray();
+
+            // better synchronous for now
+            //var remoteTasks = remoteDirectories.Select(dir => Task<ICollection<RemoteFile>>.Factory.StartNew(() => dir.GetFiles())).ToArray();
+            var remoteTasks = remoteDirectories.Select(dir => new Task<ICollection<RemoteFile>>(() => dir.GetFiles())).ToArray();
+
+            System.Threading.Tasks.Task.Factory.StartNew(() => StartInSequence(remoteTasks));
 
             return ReadAsync(localTasks).Union(ReadAsync(remoteTasks)).ToArray();
         }
@@ -208,6 +260,52 @@ namespace Lucas.Solutions.IO
             }
 
             return tasks.ToArray();
+        }
+
+        protected virtual async void StartInSequence(IEnumerable<System.Threading.Tasks.Task> tasks)
+        {
+            foreach (var task in tasks)
+            {
+                task.Start();
+                await task;
+            }
+        }
+
+        protected virtual IncomingTrace[] Write(OutgoingTrace[] outgoing)
+        {
+            var incoming = new List<IncomingTrace>();
+
+            var localDirectories = Transfer.Parties
+                .Where(party => party.Direction == TransferDirection.In && party.Host.Protocol == HostProtocol.FileSystem)
+                .Select(party => new LocalDirectory(party))
+                .ToArray();
+
+            var remoteDirectories = Transfer.Parties
+                .Where(party => party.Direction == TransferDirection.In && party.Host.Protocol == HostProtocol.FileTransfer)
+                .Select(party => new RemoteDirectory(party))
+                .ToArray();
+
+            foreach (var trace in outgoing)
+            {
+                incoming.AddRange(localDirectories.Select(dir => Write(trace, dir)));
+                incoming.AddRange(remoteDirectories.Select(dir => Write(trace, dir)));
+            }
+
+            return incoming.ToArray();
+        }
+
+        protected virtual IncomingTrace Write(OutgoingTrace outgoing, LocalDirectory directory)
+        {
+            var file = new LocalFile(outgoing.File, directory);
+            return Write(outgoing, file, directory.Party);
+        }
+
+        protected virtual IncomingTrace Write(OutgoingTrace outgoing, RemoteDirectory directory)
+        {
+            var file = new RemoteFile(outgoing.File, directory);
+            var trace = Write(outgoing, file, directory.Party);
+            System.Threading.Thread.SpinWait(100);
+            return trace;
         }
 
         protected virtual IncomingTrace Write(OutgoingTrace outgoing, TransferFile file, Party party)
@@ -266,11 +364,19 @@ namespace Lucas.Solutions.IO
             {
                 var index = System.Threading.Tasks.Task.WaitAny(outgoingTasks);
 
-                var trace = outgoingTasks[index].Result;
+                var outgoing = outgoingTasks[index].Result;
 
-                tasks.AddRange(localDirectories.Select(dir => WriteAsync(trace, dir)));
+                // local tasks are already started
+                var localTasks = localDirectories.Select(dir => WriteAsync(outgoing, dir));
 
-                tasks.AddRange(remoteDirectories.Select(dir => WriteAsync(trace, dir)));
+                // remote tasks are not started
+                var remoteTasks = remoteDirectories.Select(dir => WriteAsync(outgoing, dir));
+
+                tasks.AddRange(localTasks);
+                tasks.AddRange(remoteTasks);
+
+                // start remote tasks synchronous
+                System.Threading.Tasks.Task.Factory.StartNew(() => StartInSequence(remoteTasks));
             }
 
             return tasks.ToArray();
@@ -287,7 +393,7 @@ namespace Lucas.Solutions.IO
 
         protected virtual Task<IncomingTrace> WriteAsync(OutgoingTrace outgoing, RemoteDirectory directory)
         {
-            return Task<IncomingTrace>.Factory.StartNew(() =>
+            return new Task<IncomingTrace>(() =>
             {
                 var file = new RemoteFile(outgoing.File, directory);
                 return Write(outgoing, file, directory.Party);

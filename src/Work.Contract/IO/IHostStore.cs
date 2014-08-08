@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Lucas.Solutions.IO
 {
+    using Lucas.Solutions.Persistence;
+
     public interface IHostStore : IEntityStore<Host>, IQueryableEntityStore<Host>
     {
         Task<IQueryable<Host>> Hosts { get; }

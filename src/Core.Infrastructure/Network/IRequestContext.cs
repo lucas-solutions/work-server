@@ -1,5 +1,5 @@
 ﻿
-namespace Lucas.Solutions.Diagnostics
+namespace Lucas.Solutions.Network
 {
     public interface IRequestContext
     {

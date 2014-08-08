@@ -6,6 +6,8 @@ using System.Web;
 
 namespace Lucas.Solutions.Stores
 {
+    using Lucas.Solutions.Persistence;
+
     public class EntityStore : IEntityStore
     {
     }

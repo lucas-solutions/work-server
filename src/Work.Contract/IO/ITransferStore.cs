@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Lucas.Solutions.IO
 {
+    using Lucas.Solutions.Persistence;
+
     public interface ITransferStore : IEntityStore<Transfer>
     {
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lucas.Solutions.Diagnostics
+namespace Lucas.Solutions.Network
 {
     public class LoggerException : Exception
     {

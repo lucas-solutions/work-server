@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 
-namespace Lucas.Solutions.Diagnostics
+namespace Lucas.Solutions.Network
 {
-    using Lucas.Solutions.Diagnostics.Responses;
     using Newtonsoft.Json;
 
     public class LogglyHttpCommunicator
@@ -65,7 +64,7 @@ namespace Lucas.Solutions.Diagnostics
                 }
                 sb.Append(kvp.Key);
                 sb.Append('=');
-                sb.Append(HttpUtility.UrlEncode(kvp.Value.ToString()));
+                sb.Append(WebUtility.UrlEncode(kvp.Value.ToString()));
                 sb.Append("&");
             }
             return sb.Remove(sb.Length - 1, 1).ToString();

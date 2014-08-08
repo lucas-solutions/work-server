@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 namespace Lucas.Solutions.Stores
 {
     using Lucas.Solutions.IO;
+    using Lucas.Solutions.Persistence;
     
     public class HostMemoryStore : IQueryableEntityStore<Host>, IHostStore
     {

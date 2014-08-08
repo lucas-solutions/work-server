@@ -95,6 +95,10 @@
     <Compile Include="Stores\TransferTraceDocumentStore.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core.Contract\Lucas.Solutions.Core.Contract.csproj">
+      <Project>{eef2d26a-509c-457f-9e4d-f0c372945f0f}</Project>
+      <Name>Lucas.Solutions.Core.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Work.Contract\Lucas.Solutions.Work.Contract.csproj">
       <Project>{4d49df65-18a2-4544-a713-c20d33e1cac8}</Project>
       <Name>Lucas.Solutions.Work.Contract</Name>

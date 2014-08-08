@@ -6,6 +6,7 @@ using System.Web;
 namespace Lucas.Solutions.Stores
 {
     using Lucas.Solutions.Automation;
+    using Lucas.Solutions.Persistence;
 
     public class TaskStore : IQueryableEntityStore<Task>
     {

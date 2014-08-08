@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Lucas.Solutions.Stores
 {
+    using Lucas.Solutions.Persistence;
+
     public class EntityDocumentStore : IEntityStore
     {
     }

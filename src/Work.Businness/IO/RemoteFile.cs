@@ -37,9 +37,6 @@ namespace Lucas.Solutions.IO
             var responseStream = response.GetResponseStream();
 
             Copy(responseStream, outputStream, progress);
-            outputStream.Flush();
-            outputStream.Close();
-
             responseStream.Close();
 
             Console.WriteLine("Download File Complete, status {0}", response.StatusDescription);

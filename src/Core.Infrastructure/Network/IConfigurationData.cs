@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Lucas.Solutions.Diagnostics
+namespace Lucas.Solutions.Network
 {
     public interface IConfigurationData
     {

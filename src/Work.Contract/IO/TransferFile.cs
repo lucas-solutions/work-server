@@ -25,7 +25,7 @@ namespace Lucas.Solutions.IO
         public DateTimeOffset? ModifiedOn
         {
             get;
-            protected set;
+            set;
         }
 
         /// <summary>

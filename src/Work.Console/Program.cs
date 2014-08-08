@@ -184,11 +184,11 @@ namespace Lucas.Solutions
                         var transfer = transfers.FirstOrDefault(tran => tran.Name == name);
 
                         var worker = new TransferWorker() { Transfer = transfer };
-                        var task = worker.WorkAsync();
+                        worker.Work();
 
                         if (transfer == null)
                         {
-                            Console.WriteLine("Transfer \"{0}\" not found.");
+                            Console.WriteLine("Transfer \"{0}\" not found.", name);
                         }
                     }
                 });

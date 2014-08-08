@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lucas.Solutions.Diagnostics.Responses
+namespace Lucas.Solutions.Network
 {
     public class Response
     {

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 namespace Lucas.Solutions.Stores
 {
     using Lucas.Solutions.Authentication;
+    using Lucas.Solutions.Persistence;
 
     public class UserMemoryStore : IQueryableEntityStore<User>
     {

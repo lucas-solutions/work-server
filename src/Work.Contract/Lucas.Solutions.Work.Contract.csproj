@@ -58,7 +58,6 @@
     <Compile Include="Configuration\PartyElementCollection.cs" />
     <Compile Include="Configuration\UserElementCollection.cs" />
     <Compile Include="Configuration\HostElementCollection.cs" />
-    <Compile Include="IEntityStore.cs" />
     <Compile Include="IO\TransferDirectory.cs" />
     <Compile Include="IO\TransferFile.cs" />
     <Compile Include="IO\HostProtocol.cs" />
@@ -81,7 +80,6 @@
     <Compile Include="IO\Host.cs" />
     <Compile Include="IO\Transfer.cs" />
     <Compile Include="Automation\IWork.cs" />
-    <Compile Include="IQueriableEntityStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Automation\TaskState.cs" />
     <Compile Include="Stores\HostMemoryStore.cs" />

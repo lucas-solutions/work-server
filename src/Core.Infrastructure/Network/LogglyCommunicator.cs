@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Lucas.Solutions.Diagnostics
+namespace Lucas.Solutions.Network
 {
     /// <summary>
     /// Abstract base class for LogglyHttpCommunicator and LogglyUdpCommunicator

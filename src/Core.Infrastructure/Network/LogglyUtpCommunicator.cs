@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Web;
 
-namespace Lucas.Solutions.Diagnostics
+namespace Lucas.Solutions.Network
 {
     public class LogglyUtpCommunicator : LogglyCommunicator, IDisposable
     {

@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Lucas.Solutions.Diagnostics
+namespace Lucas.Solutions.Network
 {
-    using Lucas.Solutions.Diagnostics.Responses;
     using Newtonsoft.Json;
 
-    public class LogContext<TLog>
-        where TLog : Log<TLog>
+    public class LogglyContext<TEntity>
+        where TEntity : Log<TEntity>
     {
-        public static implicit operator Action<LogResponse>(LogContext<TLog> context)
+        public static implicit operator Action<LogResponse>(LogglyContext<TEntity> context)
         {
             return response =>
             {
@@ -27,7 +26,7 @@ namespace Lucas.Solutions.Diagnostics
         private readonly IDictionary<string, object> _data;
         private bool _sent;
 
-        public LogContext(ILogger logger, IDictionary<string, object> data)
+        public LogglyContext(ILogger logger, IDictionary<string, object> data)
         {
             if (logger == null)
                 throw new ArgumentNullException("logger");
@@ -53,7 +52,7 @@ namespace Lucas.Solutions.Diagnostics
             }
         }
 
-        public Action<LogContext<TLog>> Callback
+        public Action<LogglyContext<TEntity>> Callback
         {
             get;
             set;

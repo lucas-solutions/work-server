@@ -10,15 +10,24 @@ namespace Lucas.Solutions.Configuration
         {
             return el == null ? null : new Party
             {
+                Certificate = el.Certificate,
                 Direction = el.Direction,
                 Email = el.Email,
                 Host = new Host { Name = el.Host },
                 Name = el.Name,
                 Password = el.Password,
                 Path = el.Path,
+                Recursive = el.Recursive,
                 Summary = el.Summary,
                 User = el.User,
             };
+        }
+
+        [ConfigurationProperty("certificate", IsRequired = false)]
+        public virtual string Certificate
+        {
+            get { return (string)base["certificate"]; }
+            set { base["certificate"] = value; }
         }
 
         [ConfigurationProperty("direction", IsRequired = true)]
@@ -61,6 +70,13 @@ namespace Lucas.Solutions.Configuration
         {
             get { return (string)base["path"]; }
             set { base["path"] = value; }
+        }
+
+        [ConfigurationProperty("recursive", IsRequired = false)]
+        public virtual bool Recursive
+        {
+            get { return (bool)base["recursive"]; }
+            set { base["recursive"] = value; }
         }
 
         [ConfigurationProperty("summary", IsRequired = false)]

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Lucas.Solutions.Stores
-{   
+{
+    using Lucas.Solutions.Persistence;
+
     public class TaskMemoryStore : IQueryableEntityStore<Automation.Task>, Automation.ITaskStore
     {
         private ICollection<Automation.Task> _collection;

@@ -10,8 +10,8 @@
     <transfers>
       <transfer name="Test" start="">
         <parties>
-          <party name="MyBucket" email="lucas@lucas.solutions" host="Archive" path="/bucket" direction="Out" />
-          <party name="GoDaddy" email="lucas@lucas.solutions" host="GoDaddy" path="/" direction="In" user="transferworker" password="poweruser1" />
+          <party name="MyBucket" email="lucas@lucas.solutions" host="Archive" path="/bucket" direction="In" recursive="True" />
+          <party name="GoDaddy" email="lucas@lucas.solutions" host="GoDaddy" path="/" direction="Out" user="transferworker" password="poweruser1" />
         </parties>
       </transfer>
     </transfers>
